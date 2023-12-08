@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "module": "commonjs" /* Specify what module code is generated. */,
+    "lib": [
+      "es2020"
+    ] /* Specify a set of JavaScript language features that the emitted JavaScript can use. */,
+    "outDir": "./dist" /* Specify an output folder for all emitted files. */,
+    "rootDir": "./src" /* Specify the root folder within your source files. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+
+    /* Additional Checks */
+    "noImplicitAny": true /* Raise an error on expressions and declarations with an implied 'any' type. */,
+    "strictNullChecks": true /* Enable strict null checking. */,
+    "strictFunctionTypes": true /* Ensure functions parameters are consistent with their usage. */,
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": true /* Report errors on unused parameters. */,
+    "noImplicitReturns": true /* Report an error when not all code paths in a function return a value. */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statements. */,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node" /* Choose the module resolution strategy. */,
+    "baseUrl": "./" /* Base directory to resolve non-relative module names. */,
+    "paths": {
+      /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+      "*": ["node_modules/*"]
+    }
+  },
+  "include": ["src/**/*"] /* Specify files to be included in compilation. */,
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ] /* Specify files to be excluded from compilation. */
+}

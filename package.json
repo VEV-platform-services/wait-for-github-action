@@ -1,0 +1,35 @@
+{
+  "name": "trigger-workflow",
+  "version": "1.0.0",
+  "description": "Trigger a GitHub Action workflo",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts",
+    "test": "test",
+    "lint": "biome lint ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vevdevopsadmin/wait-for-github-workflow.git"
+  },
+  "keywords": ["github", "actions", "workflow", "cicd"],
+  "author": "Ben Jefferies",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vevdevopsadmin/wait-for-github-workflow/issues"
+  },
+  "homepage": "https://github.com/vevdevopsadmin/wait-for-github-workflow#readme",
+  "devDependencies": {
+    "@biomejs/biome": "1.4.1",
+    "@types/async-retry": "^1.4.8",
+    "@types/node": "^20.10.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "async-retry": "^1.3.3",
+    "commander": "^11.1.0"
+  }
+}
