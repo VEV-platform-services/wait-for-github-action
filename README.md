@@ -19,13 +19,13 @@ npm run build
 ### Docker
 ```bash
 export GITHUB_TOKEN=...
-docker run -it wait-for-github-workflow wait  -o VEV-platform-services -r wait-for-github-workflow -w "Build and Publish Docker Image" -b abcdef
-docker run -it wait-for-github-workflow trigger  -o VEV-platform-services -r wait-for-github-workflow -w "Build and Publish Docker Image" -b main
+docker run -it wait-for-github-workflow wait -r VEV-platform-services/wait-for-github-workflow -w "Build and Publish Docker Image" -b abcdef
+docker run -it wait-for-github-workflow trigger -r VEV-platform-services/wait-for-github-workflow -w "Build and Publish Docker Image" -b main
 ```
 
 ### TypeScript
 ```bash
 export GITHUB_TOKEN=...
-npm run wait -- -o VEV-platform-services -r wait-for-github-workflow -w "Build and Publish Docker Image" -b abcdef
-npm run trigger -- -o VEV-platform-services -r wait-for-github-workflow -w "Build and Publish Docker Image" -b main
+npm run wait -- -r VEV-platform-services/wait-for-github-workflow -w "Build and Publish Docker Image" -b abcdef
+npm run trigger -- -r VEV-platform-services/wait-for-github-workflow -w "Build and Publish Docker Image" -b main
 ```

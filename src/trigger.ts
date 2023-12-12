@@ -8,8 +8,8 @@ export async function triggerWorkflowHandler(opts: TriggerOptions) {
     auth: opts.github_token,
   });
   const repos = await octokit.actions.listRepoWorkflows({
-    owner: opts.owner,
-    repo: opts.repo,
+    owner: opts.repo.split("/")[0],
+    repo: opts.repo.split("/")[1],
   });
   const foundWorkflow = repos.data.workflows.find((workflow) => {
     return workflow.name === opts.workflow_name;
@@ -19,16 +19,16 @@ export async function triggerWorkflowHandler(opts: TriggerOptions) {
   }
 
   await octokit.rest.actions.createWorkflowDispatch({
-    owner: opts.owner,
-    repo: opts.repo,
+    owner: opts.repo.split("/")[0],
+    repo: opts.repo.split("/")[1],
     workflow_id: foundWorkflow.id,
     ref: opts.ref,
     inputs: opts.input,
   });
 
   const found = await octokit.repos.listCommits({
-    owner: opts.owner,
-    repo: opts.repo,
+    owner: opts.repo.split("/")[0],
+    repo: opts.repo.split("/")[1],
     sha: opts.ref,
     per_page: 1,
   });
