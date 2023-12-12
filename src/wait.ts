@@ -49,9 +49,11 @@ async function checkWorkflowStatus(opts: WaitForOptions, octokit: Octokit): Prom
 
 async function getAllWorkflowRuns(octokit: Octokit, opts: WaitForOptions, workflowIds: number[]) {
   const fetchWorkflowJobPromises = workflowIds.map(async (workflow_id: number) => {
+    const owner = opts.repo.split("/")[0];
+    const repo = opts.repo.split("/")[1];
     const workflowRuns = await octokit.actions.listWorkflowRuns({
-      owner: opts.repo.split("/")[0],
-      repo: opts.repo.split("/")[1],
+      owner,
+      repo,
       workflow_id,
       head_sha: opts.ref,
     });
@@ -66,9 +68,11 @@ async function getAllWorkflowRuns(octokit: Octokit, opts: WaitForOptions, workfl
 }
 
 async function getWorkflowIdsForWorkflowName(octokit: Octokit, opts: WaitForOptions): Promise<number[]> {
+  const owner = opts.repo.split("/")[0];
+  const repo = opts.repo.split("/")[1];
   const repoWorkflows = await octokit.actions.listRepoWorkflows({
-    owner: opts.repo.split("/")[0],
-    repo: opts.repo.split("/")[1],
+    owner,
+    repo,
   });
   return repoWorkflows.data.workflows.filter((workflow) => opts.workflow_name.includes(workflow.name)).map((workflow) => workflow.id);
 }

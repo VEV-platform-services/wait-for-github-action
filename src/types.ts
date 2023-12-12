@@ -1,7 +1,7 @@
 export type TriggerOptions = {
   repo: string;
   workflow_name: string;
-  ref: string;
+  branch: string;
   github_token: string;
   max_wait: number;
   input: {
@@ -12,7 +12,8 @@ export type TriggerOptions = {
 export type WaitForOptions = {
   workflow_name: string[];
   createdAfterTime?: Date;
-} & Pick<TriggerOptions, "repo" | "ref" | "github_token" | "max_wait">;
+  ref: string;
+} & Pick<TriggerOptions, "repo" | "github_token" | "max_wait">;
 
 export type WorkflowSummary = {
   succeeded: number;
