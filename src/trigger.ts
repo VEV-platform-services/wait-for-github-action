@@ -38,6 +38,7 @@ export async function triggerWorkflowHandler(opts: TriggerOptions) {
   await waitForWorkflowHandler({
     ...opts,
     ref: found.data[0].sha,
+    branch: opts.branch,
     workflow_name: [opts.workflow_name],
     createdAfterTime: fifteenSecondsAgo,
   });

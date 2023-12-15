@@ -10,6 +10,7 @@ export type TriggerOptions = {
 };
 
 export type WaitForOptions = {
+  branch: string;
   workflow_name: string[];
   createdAfterTime?: Date;
   ref: string;
