@@ -1,8 +1,15 @@
 import { Octokit } from "@octokit/rest";
 import { TriggerOptions } from "./types";
-import { waitForWorkflowHandler } from "./wait";
+import { waitForWorkflow } from "./wait";
 
 export async function triggerWorkflowHandler(opts: TriggerOptions) {
+  console.log("Repository :", opts.repo);
+  console.log("Workflow Name:", opts.workflow_name);
+  console.log("Github Branch: ", opts.branch);
+  await triggerWorkflow(opts);
+}
+
+export async function triggerWorkflow(opts: TriggerOptions) {
   const fifteenSecondsAgo = new Date(Date.now() - 15 * 1000); // Give some leeway incase the time between running this command and github actions NTP is out of sync
   const octokit = new Octokit({
     auth: opts.github_token,
@@ -34,8 +41,9 @@ export async function triggerWorkflowHandler(opts: TriggerOptions) {
     sha: opts.branch,
     per_page: 1,
   });
+  console.log("Github SHA: ", found.data[0].sha);
 
-  await waitForWorkflowHandler({
+  await waitForWorkflow({
     ...opts,
     ref: found.data[0].sha,
     branch: opts.branch,

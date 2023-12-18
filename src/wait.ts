@@ -11,10 +11,13 @@ const retryOptions: retry.Options = {
 };
 
 export async function waitForWorkflowHandler(opts: WaitForOptions) {
-  console.log("Repository :",opts.repo);
-  console.log("Branch :", opts.branch);
-  console.log("Workflow Name:",opts.workflow_name);
+  console.log("Repository :", opts.repo);
+  console.log("Workflow Name:", opts.workflow_name);
   console.log("Github SHA: ", opts.ref);
+  await waitForWorkflow(opts);
+}
+
+export async function waitForWorkflow(opts: WaitForOptions) {
   const octokit = new Octokit({
     auth: opts.github_token,
   });
