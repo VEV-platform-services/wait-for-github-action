@@ -6,6 +6,7 @@ export async function triggerWorkflowHandler(opts: TriggerOptions) {
   console.log("Repository :", opts.repo);
   console.log("Workflow Name:", opts.workflow_name);
   console.log("Github Branch: ", opts.branch);
+  console.log({...opts, github_token: "*****"});
   await triggerWorkflow(opts);
 }
 

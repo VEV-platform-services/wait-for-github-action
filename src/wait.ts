@@ -14,6 +14,7 @@ export async function waitForWorkflowHandler(opts: WaitForOptions) {
   console.log("Repository :", opts.repo);
   console.log("Workflow Name:", opts.workflow_name);
   console.log("Github SHA: ", opts.ref);
+  console.log({...opts, github_token: "*****"});
   await waitForWorkflow(opts);
 }
 
