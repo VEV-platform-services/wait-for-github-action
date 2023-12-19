@@ -35,6 +35,7 @@ program
   .addOption(new Option("-t, --github_token <github_token>", "The github token").default(process.env.GITHUB_TOKEN).makeOptionMandatory(true))
   .addOption(new Option("-m, --max_wait <max_wait>", "The max wait time in minutes").default(process.env.MAX_WAIT ?? 60).makeOptionMandatory(true))
   .addOption(new Option("-i, --inputs <items...>", "The workflow inputs").default([]).argParser(parseInputs))
+  .addOption(new Option("-d --debug", "Enable debug logging").default(false))
   .action(triggerWorkflowHandler);
 
 program
@@ -57,6 +58,7 @@ program
   .addOption(new Option("-b, --ref <ref>", "The commit sha the workflow was triggered on").default(process.env.GITHUB_SHA).makeOptionMandatory(true))
   .addOption(new Option("-t, --github_token <github_token>", "The github token").default(process.env.GITHUB_TOKEN).makeOptionMandatory(true))
   .addOption(new Option("-m, --max_wait <max_wait>", "The max wait time in minutes").default(process.env.MAX_WAIT ?? 60).makeOptionMandatory(true))
+  .addOption(new Option("-d --debug", "Enable debug logging").default(false))
   .action(waitForWorkflowHandler);
 
 program.parse();

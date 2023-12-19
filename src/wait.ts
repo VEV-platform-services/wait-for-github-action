@@ -1,6 +1,7 @@
 import { Octokit } from "@octokit/rest";
 import retry from "async-retry";
 import { WaitForOptions, WorkflowSummary } from "./types";
+import {log} from "./logger";
 
 const retryOptions: retry.Options = {
   minTimeout: 10 * 1000,
@@ -65,6 +66,7 @@ async function getAllWorkflowRuns(octokit: Octokit, opts: WaitForOptions, workfl
       workflow_id,
       head_sha: opts.ref,
     });
+    log("github workflowRuns", workflowRuns.data)
 
     return workflowRuns.data.workflow_runs.filter(
       (workflowRun) => !opts.createdAfterTime || workflowRun.created_at > opts.createdAfterTime?.toISOString(),
@@ -82,5 +84,6 @@ async function getWorkflowIdsForWorkflowName(octokit: Octokit, opts: WaitForOpti
     owner,
     repo,
   });
+  log("github repoWorkflows", repoWorkflows.data)
   return repoWorkflows.data.workflows.filter((workflow) => opts.workflow_name.includes(workflow.name)).map((workflow) => workflow.id);
 }
