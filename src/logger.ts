@@ -2,7 +2,7 @@ import * as console from "console";
 
 const loggingEnabled = !!process.env.DEBUG;
 
-export const log = (message: string, context?: any) => {
+export const log = (message: string, context?: unknown) => {
     if (!loggingEnabled) {
         return
     }
